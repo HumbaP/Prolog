@@ -1,8 +1,0 @@
-padre(pam,bob).
-padre(tom,bob).
-padre(tom,liz).
-padre(bob,ann).
-padre(bob,pat).
-padre(pat,jim).
-
-
