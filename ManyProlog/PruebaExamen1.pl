@@ -1,0 +1,46 @@
+%crear una base de conocimiento de niños que jueguen futbol solo con
+% alguien de la misma edad.
+niño(juan, 10).
+niño(pedro,10).
+niño(daniel,11).
+niño(jesus, 9).
+niño(maria, 11).
+niño(carlos, 13).
+niño(paco, 10).
+niño(santiago, 10).
+
+pareja(X,Y) :- niño(X, Z1), niño(Y, Z2), Z1 == Z2, X\=Y.
+
+%dada una fecha retornar el signo zodiacal.
+signo(capricornio, enero, 21, febrero, 16).
+signo(acuario, febrero, 17, marzo, 11).
+signo(piscis, marzo, 12, abril, 18).
+signo(aries, abril, 19, mayo, 13).
+signo(tauro, mayo, 14, junio, 21).
+signo(geminis, junio, 22, julio, 20).
+signo(cancer, julio, 21, agosto, 10).
+signo(leo, agosto, 11, septiembre, 16).
+signo(virgo, septiembre, 17, octubre, 30).
+signo(libra, octubre, 31, noviembre, 23).
+signo(escorpio, noviembre, 24, noviembre, 29).
+signo(oficuo, noviembre, 30, diciembre, 17).
+signo(capricornio, diciembre, 18, enero, 20).
+
+fecha(enero, 31).
+fecha(febrero, 28).
+fecha(marzo, 31).
+fecha(abril, 30).
+fecha(mayo, 31).
+fecha(junio, 30).
+fecha(julio, 31).
+fecha(agosto, 31).
+fecha(septiembre, 30).
+fecha(octubre, 31).
+fecha(noviembre, 30).
+fecha(diciembre, 31).
+
+signoZodiaco(Mes, Dia, X):- ((signo(X,Mes,Y,_,_), Dia >= Y,
+			      fecha(Mes, MaxDia), Dia=<MaxDia);
+               (signo(X,_,_,Mes,Y2), Dia =< Y2, Dia>0)).
+
+
