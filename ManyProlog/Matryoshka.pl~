@@ -1,0 +1,7 @@
+dentro(irina,natasha).
+dentro(natasha, olga).
+dentro(olga, katarina).
+
+dentro(X,Y):- dentro(X,Y).
+dentro(X,Y):- dentro(X,Z), dentro(Z,Y).
+
