@@ -1,0 +1,2 @@
+multiplicacion(0,0).
+multiplicacion(X,N):-N > 0, R is X + X,N1 is N-1, write(R), multiplicacion(R,N1).
