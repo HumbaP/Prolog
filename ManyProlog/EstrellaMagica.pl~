@@ -1,0 +1,13 @@
+%cada una de las lineas de los triangulos, la suma de los puntos de los
+% vertices de como resultado 26, y la suma de las puntas de 26.
+
+% [[B,C,D,E],[H,I,J,K],[B,F,I,L],[E,G,J,L],[H,F,C,A],[A,D,G,K]] y
+% Vertices=[A,B,H,L,K,E]
+
+suma([],0).
+suma([X|L],R):- suma(L,R1), R is X + R1 , R==26.
+diferentes([]).
+diferentes([X|L]):- not(member(X,L)), diferentes(L).%member busca en la lista el valor.
+validos([]).
+validos([X|L]):- X>0 , X<13, validos(L).
+resultado([L|LL],V):-.
