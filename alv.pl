@@ -11,7 +11,22 @@ cartas([[1,v],[2,v],[3,v],[4,v],[5,v],[6,v],[7,v],[8,v],[9,v],[s,v],[r,v],[c2,v]
        [comodin,todo],[comodin,todo],[comodin,todo],[comodin,todo],
        [comodin4,todo],[comodin4,todo],[comodin4,todo],[comodin4,todo]]).
 
-juego(P1,P2,P3,P4,L):-cartas(L).
+elimina(X,[X|T],T).
+elimina(X,[Y|L],[Y|R]):- elimina(X,L, R).
+
+enesimo(_,[],[]).
+enesimo(1,[X|_],X).
+enesimo(N,[_|L],X):-N>1, N1 is N-1, enesimo(N1,L,X).
+
+inserta(X,[],[X|[]]).
+inserta(X,Z,[X|Z]).
+
+darCarta(J,L):-length(L,T),random_between(1,T,N),enesimo(N,L,E), inserta(E,J,J), elimina(E,L,R),L is R.
+
+juego(P1,P2,P3,P4,L):-cartas(L),darCarta(P1,L).
+
+random(L,N):- length(L,T), T2 is T-1, random_between(0,T2,N).
+
 
 /*color(verde).
 color(azul).
