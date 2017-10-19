@@ -15,7 +15,7 @@ repartir(L,P,N,LR,PR):-N == 1,
     random_between(0,T2,R),
     nth0(R,L,E,LR),
     append([E],P,PR).
-
+%Se puede usar tambien para comer cartas
 repartir(L,P,N,LR,PR):-N>1,N2 is N-1,
     repartir(L,P,N2,LR1,PR1),
     length(LR1,T),T2 is T-1,
@@ -24,6 +24,13 @@ repartir(L,P,N,LR,PR):-N>1,N2 is N-1,
     append([E],PR1,PR).
 
 juego(P1,P2,M):-cartas(L),repartir(L,[],7,LR,P1), repartir(LR,[],7,LR1,P2),
+    repartir(LR1,[],1,_,M).
+
+%Metodo para tirar cartas
+tirarCarta(P,M,C):-nth0(1,C,ColorC ),nth0(1,C,NumeroC),nth0(0,M,CartaM),nth0(1,CartaM,ColorM),nth0(1,CartaM,NumeroM ),(ColorC\=todo,((ColorC==ColorM, nth0(_,P,C,P));(NumeroC==NumeroM,select(C,P,M))));(ColorC==todo,select(C,P,M)).
+%Entra solo cuando es un comodin
+
+juego2(P1,P2,M):-cartas(L),repartir(L,[],7,LR,P1), repartir(LR,[],7,LR1,P2),
     repartir(LR1,[],1,_,M).
 
 
