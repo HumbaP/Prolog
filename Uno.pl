@@ -14,16 +14,17 @@ repartir(L,P,N,LR,PR):-N == 1,
     length(L,T),T2 is T-1,
     random_between(0,T2,R),
     nth0(R,L,E,LR),
-    append(E,P,PR).
+    append([E],P,PR).
 
 repartir(L,P,N,LR,PR):-N>1,N2 is N-1,
     repartir(L,P,N2,LR1,PR1),
     length(LR1,T),T2 is T-1,
     random_between(0,T2,R),
     nth0(R,LR1,E,LR),
-    append(E,PR1,PR).
+    append([E],PR1,PR).
 
-juego(P1,P2,M):-cartas(L),repartir(L,[],7,LR,P1).
+juego(P1,P2,M):-cartas(L),repartir(L,[],7,LR,P1), repartir(LR,[],7,LR1,P2),
+    repartir(LR1,[],1,_,M).
 
 
 /*elimina(X,[X|T],T).
